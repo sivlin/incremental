@@ -32,14 +32,15 @@ function updateGoldCounter() {
 function upgrade() {
   if (gold >= upgradeCost) {
     gold -= upgradeCost;
-    goldPerSecond *= 1.5;
-    upgradeCost *= 1.2;
+    goldPerSecond *= 2;
+    upgradeCost *= 1.5;
     upgradeCost = Math.round(upgradeCost);
     updateGoldCounter();
   }
 }
 
 // Start game loop
+updateGoldCounter();
 setInterval(updateGoldCounter, 1000);
 
 // Event listeners
