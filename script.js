@@ -1,4 +1,4 @@
-let gold = 10;
+let gold = 0;
 let goldPerSecond = 1;
 let upgradeCost = 10;
 
@@ -6,6 +6,7 @@ let upgradeCost = 10;
 const goldCounter = document.getElementById('gold-counter');
 const upgradeButton = document.getElementById('upgrade-button');
 const upgradeCostSpan = document.getElementById('upgrade-cost');
+const goldPerSecondSpan = document.getElementById('gold-per-second');
 
 // Update gold counter
 function updateGoldCounter() {
@@ -21,19 +22,32 @@ function updateGoldCounter() {
 		upgradeButton.textContent = `Upgrade (Cost: ${upgradeCost} gold)`;
 		upgradeButton.classList.remove('clickable');
 	}
+	
+	// Update gold per second and upgrade cost based on purchase
+	if (gold >= upgradeCost) {
+		goldPerSecond *= 1.5;
+		goldPerSecond = Math.round(goldPerSecond * 100) / 100;
+		goldPerSecondSpan.textContent = goldPerSecond;
+		upgradeCost *= 1.2;
+		upgradeCost = Math.round(upgradeCost);
+		upgradeCostSpan.textContent = upgradeCost;
+	}
 }
 
-// Upgrade gold per second and increase cost
+// Upgrade gold per second and increase cost dynamically
 function upgrade() {
 	gold -= upgradeCost;
-	goldPerSecond = 2;
-	upgradeCost *= 2;
-	upgradeButton.textContent = `Upgrade (Cost: ${upgradeCost} gold)`;
-	upgradeCostSpan.textContent = upgradeCost;
+	goldPerSecond *= 1.5;
+	goldPerSecond = Math.round(goldPerSecond * 100) / 100;
+	
+	upgradeCost *= 1.2;
+	upgradeCost = Math.round(upgradeCost);
+	
+	updateGoldCounter();
 }
 
-// Update gold counter every second
+// Start game loop
 setInterval(updateGoldCounter, 1000);
 
-// Add click event listener to upgrade button
+// Event listeners
 upgradeButton.addEventListener('click', upgrade);
