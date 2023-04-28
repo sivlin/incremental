@@ -1,47 +1,123 @@
-let gold = 0;
-let goldPerSecond = 1;
-let upgradeCost = 10;
+class Game {
+  constructor() {
+    this.stats = new Stats();
+    this.buttons = new ButtonCollection();
+    this.updateInterval = null;
+  }
 
-// Get HTML elements
-const goldCounter = document.getElementById('gold-counter');
-const upgradeButton = document.getElementById('upgrade-button');
-const upgradeCostSpan = document.getElementById('upgrade-cost');
-const goldPerSecondSpan = document.getElementById('gold-per-second');
+  start() {
+    this.updateInterval = setInterval(() => {
+      this.stats.update();
+      this.updateStats();
+    }, 1000);
+  }
 
-// Update gold counter and stats
-function updateGoldCounter() {
-  gold += goldPerSecond;
-  goldCounter.textContent = gold;
+  stop() {
+    clearInterval(this.updateInterval);
+  }
 
-  // Update gold per second
-  goldPerSecondSpan.textContent = goldPerSecond.toFixed(1);
-
-  // Enable/disable upgrade button and update cost
-  if (gold >= upgradeCost) {
-    upgradeButton.disabled = false;
-    upgradeButton.textContent = `Upgrade (Cost: ${upgradeCost} gold)`;
-    upgradeButton.classList.add('clickable');
-  } else {
-    upgradeButton.disabled = true;
-    upgradeButton.textContent = `Upgrade (Cost: ${upgradeCost} gold)`;
-    upgradeButton.classList.remove('clickable');
+  updateStats() {
+    this.stats.updateDOM();
+    this.buttons.updateDOM();
   }
 }
 
-// Upgrade gold per second and increase cost dynamically
-function upgrade() {
-  if (gold >= upgradeCost) {
-    gold -= upgradeCost;
-    goldPerSecond *= 2;
-    upgradeCost *= 1.5;
-    upgradeCost = Math.round(upgradeCost);
-    updateGoldCounter();
+class Stats {
+  constructor() {
+    this.gold = new Stat('Gold', 0, 1);
+    this.customStat = new Stat('Custom', 0, 0.1); // Example custom stat
+  }
+
+  update() {
+    this.gold.increment();
+    this.customStat.increment(); // Example custom stat
+  }
+
+  updateDOM() {
+    this.gold.updateDOM();
+    this.customStat.updateDOM(); // Example custom stat
   }
 }
+
+class Stat {
+  constructor(name, value, increment) {
+    this.name = name;
+    this.value = value;
+    this.increment = increment;
+    this.element = null;
+  }
+
+  increment() {
+    this.value += this.increment;
+  }
+
+  updateDOM() {
+    if (!this.element) {
+      this.element = document.createElement('span');
+      this.element.textContent = `${this.name}: ${this.value.toFixed(1)}`;
+      document.body.appendChild(this.element);
+    } else {
+      this.element.textContent = `${this.name}: ${this.value.toFixed(1)}`;
+    }
+  }
+}
+
+class ButtonCollection {
+  constructor() {
+    this.buttons = [];
+  }
+
+  add(button) {
+    this.buttons.push(button);
+  }
+
+  updateDOM() {
+    this.buttons.forEach(button => button.updateDOM());
+  }
+}
+
+class Button {
+  constructor(name, cost, effect) {
+    this.name = name;
+    this.cost = cost;
+    this.effect = effect;
+    this.element = null;
+  }
+
+  buy() {
+    if (game.stats.gold.value >= this.cost) {
+      game.stats.gold.value -= this.cost;
+      this.cost *= 2;
+      this.effect();
+      this.updateDOM();
+    }
+  }
+
+  updateDOM() {
+    if (!this.element) {
+      this.element = document.createElement('button');
+      this.element.textContent = `${this.name} (Cost: ${this.cost})`;
+      document.body.appendChild(this.element);
+      this.element.addEventListener('click', () => this.buy());
+    } else {
+      this.element.textContent = `${this.name} (Cost: ${this.cost})`;
+    }
+  }
+}
+
+// Initialize game
+const game = new Game();
+
+// Add stats
+game.stats.gold.element = document.getElementById('gold-counter'); // Gold is a special case
+game.stats.customStat.element = document.createElement('span'); // Example custom stat
+document.body.appendChild(game.stats.customStat.element); // Example custom stat
+
+// Add buttons
+const upgradeButton = new Button('Upgrade', 10, () => {
+  game.stats.gold.increment += 1;
+});
+game.buttons.add(upgradeButton);
 
 // Start game loop
-updateGoldCounter();
-setInterval(updateGoldCounter, 1000);
-
-// Event listeners
-upgradeButton.addEventListener('click', upgrade);
+game.start();
