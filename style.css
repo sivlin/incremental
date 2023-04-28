@@ -1,66 +1,14 @@
 body {
-    background-color: #EEE;
-    font-family: Arial, sans-serif;
+	text-align: center;
 }
 
-h1 {
-    text-align: center;
+button {
+	font-size: 1.5em;
+	padding: 0.5em 1em;
+	margin-top: 1em;
 }
 
-#game {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 50px auto;
-    max-width: 800px;
-    width: 90%;
-}
-
-#gold, #upgrades, #stats {
-    background-color: #DDD;
-    border: 1px solid #888;
-    border-radius: 5px;
-    padding: 20px;
-    width: 30%;
-}
-
-#gold-btn {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    background-color: #FFD700;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#gold-btn:disabled {
-    background-color: #CCC;
-    cursor: not-allowed;
-}
-
-.upgrade-item {
-    margin-bottom: 10px;
-}
-
-.upgrade-item h3 {
-    margin: 0 0 5px;
-}
-
-.upgrade-item p {
-    margin: 0;
-}
-
-.stats-item {
-    margin-bottom: 10px;
-}
-
-.stats-item h3 {
-    margin: 0 0 5px;
-}
-
-.stats-item p {
-    margin: 0;
+#gold {
+	font-weight: bold;
+	font-size: 1.2em;
 }
