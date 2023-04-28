@@ -1,4 +1,4 @@
-let gold = 0;
+let gold = 10;
 let goldPerSecond = 1;
 let upgradeCost = 10;
 
