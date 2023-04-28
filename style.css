@@ -1,48 +1,40 @@
 body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
-	text-align: center;
-	margin-top: 20px;
+#game-container {
+    margin: 50px auto;
+    text-align: center;
 }
 
-p {
-	text-align: center;
-	font-size: 24px;
-	margin-top: 20px;
+#gold-display {
+    font-size: 48px;
+    margin-bottom: 20px;
 }
 
-button {
-	display: block;
-	margin: 0 auto;
-	margin-top: 20px;
-	font-size: 24px;
-	padding: 10px 20px;
-	border: none;
-	background-color: #ffa500;
-	color: #fff;
-	cursor: pointer;
-	opacity: 0.7;
-	transition: all 0.2s ease-in-out;
+#upgrade-button {
+    font-size: 24px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 
-button:disabled {
-	cursor: not-allowed;
-	background-color: #ccc;
+#upgrade-button:hover {
+    background-color: #3e8e41;
 }
 
-button:hover {
-	opacity: 1;
+#stat-screen {
+    font-size: 18px;
+    text-align: left;
+    margin: 0 auto;
+    max-width: 300px;
 }
 
-#stats {
-	position: fixed;
-	top: 0;
-	right: 0;
-	padding: 20px;
-	background-color: #fff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+#stat-screen h2 {
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
