@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Incremental Game</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <div id="game-container">
-        <div id="gold-display"></div>
-        <button id="upgrade-button">Upgrade Gold per Second</button>
-        <div id="stat-screen"></div>
+    <h1>Incremental Game</h1>
+    <div id="game">
+        <div id="gold">
+            <h2>Gold: <span id="gold-count"></span></h2>
+            <button id="gold-btn">+1 Gold</button>
+        </div>
+        <div id="upgrades">
+            <h2>Upgrades:</h2>
+            <div id="upgrade-list"></div>
+        </div>
+        <div id="stats">
+            <h2>Stats:</h2>
+            <ul id="stat-list"></ul>
+        </div>
     </div>
-    <script src="Gold.js"></script>
-    <script src="StatScreen.js"></script>
-    <script src="Game.js"></script>
-    <script src="main.js"></script>
+    <script src="bundle.js"></script>
 </body>
-
 </html>
