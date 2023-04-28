@@ -1,40 +1,66 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #EEE;
+    font-family: Arial, sans-serif;
 }
 
-#game-container {
-    margin: 50px auto;
+h1 {
     text-align: center;
 }
 
-#gold-display {
-    font-size: 48px;
-    margin-bottom: 20px;
+#game {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 50px auto;
+    max-width: 800px;
+    width: 90%;
 }
 
-#upgrade-button {
-    font-size: 24px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+#gold, #upgrades, #stats {
+    background-color: #DDD;
+    border: 1px solid #888;
     border-radius: 5px;
+    padding: 20px;
+    width: 30%;
+}
+
+#gold-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #FFD700;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 20px;
 }
 
-#upgrade-button:hover {
-    background-color: #3e8e41;
+#gold-btn:disabled {
+    background-color: #CCC;
+    cursor: not-allowed;
 }
 
-#stat-screen {
-    font-size: 18px;
-    text-align: left;
-    margin: 0 auto;
-    max-width: 300px;
-}
-
-#stat-screen h2 {
-    margin-top: 40px;
+.upgrade-item {
     margin-bottom: 10px;
+}
+
+.upgrade-item h3 {
+    margin: 0 0 5px;
+}
+
+.upgrade-item p {
+    margin: 0;
+}
+
+.stats-item {
+    margin-bottom: 10px;
+}
+
+.stats-item h3 {
+    margin: 0 0 5px;
+}
+
+.stats-item p {
+    margin: 0;
 }
